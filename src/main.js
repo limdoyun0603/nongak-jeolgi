@@ -5,6 +5,7 @@
 //   ?at=2026-06-06T09:00   이 시각부터 시작(한국 시각)
 //   ?rate=3600             시간을 3600배 빠르게(1초 = 1시간). 절기가 바뀌는 모습 확인용
 //   ?info=0                글자 숨기기
+//   #2026-06-06-10         ?at 대신 쓸 수 있는 짧은 형식(미리보기 링크용)
 
 import { termAt } from './jeolgi.js';
 import { sunAltitude, daylight } from './sun.js';
@@ -13,6 +14,9 @@ import { loadPan, poseAt } from './pan.js';
 
 const params = new URLSearchParams(location.search);
 const startReal = Date.now();
+// 미리보기 링크에서는 주소 뒤 # 으로도 시각을 줄 수 있다. 예: #2026-06-06-10 (6월 6일 10시)
+const hash = location.hash.match(/^#(\d{4})-(\d\d)-(\d\d)(?:-(\d\d))?$/);
+if (hash && !params.get('at')) params.set('at', `${hash[1]}-${hash[2]}-${hash[3]}T${hash[4] ?? '12'}:00`);
 const startClock = params.get('at') ? Date.parse(params.get('at') + (/[zZ]|[+-]\d\d:?\d\d$/.test(params.get('at')) ? '' : '+09:00')) : startReal;
 const rate = Number(params.get('rate')) || 1;
 const showInfo = params.get('info') !== '0';

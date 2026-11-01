@@ -79,12 +79,14 @@ function bridge(from, to) {
 }
 
 export async function loadPan() {
-  const files = await listRecordings();
+  // 미리보기용: 녹화본을 페이지 안에 넣어 둔 경우 그것을 쓴다(네트워크 없이).
+  const preload = globalThis.PAN_PRELOAD;
+  const files = preload ? Object.keys(preload) : await listRecordings();
   const segments = [];
   const loaded = [];
   for (const f of files) {
     try {
-      const rec = await getJSON(SOURCE.pages + 'recordings/' + f);
+      const rec = preload ? preload[f] : await getJSON(SOURCE.pages + 'recordings/' + f);
       if (!validRecord(rec)) continue;
       segments.push(...toSegments(rec, f));
       loaded.push(f);
