@@ -6,9 +6,16 @@
 <link rel="icon" href="data:,">
 <title>판굿 절기</title>
 <style>
-  html, body { margin: 0; height: 100%; overflow: hidden; background: #888; }
+  @font-face { font-family: SongMyung; src: url(fonts/song-myung.woff2) format('woff2'); font-weight: 400; font-display: block; }
+  @font-face { font-family: GowunBatang; src: url(fonts/gowun-batang.woff2) format('woff2'); font-weight: 400; font-display: block; }
+  @font-face { font-family: Hahmlet; src: url(fonts/hahmlet.woff2) format('woff2'); font-weight: 400; font-display: block; }
+  @font-face { font-family: Hahmlet; src: url(fonts/hahmlet-600.woff2) format('woff2'); font-weight: 600; font-display: block; }
+  @font-face { font-family: Hanja300; src: url(fonts/hanja-300.woff2) format('woff2'); font-weight: 400; font-display: block; }
+  @font-face { font-family: Hanja500; src: url(fonts/hanja-500.woff2) format('woff2'); font-weight: 400; font-display: block; }
+  @font-face { font-family: Hanja900; src: url(fonts/hanja-900.woff2) format('woff2'); font-weight: 400; font-display: block; }
+  html, body { margin: 0; height: 100%; overflow: hidden; background: #171c1a; }
   canvas { display: block; width: 100vw; height: 100vh; }
-  #info { position: fixed; left: 16px; bottom: 14px; margin: 0; font: 12px/1.6 ui-monospace, Menlo, Consolas, monospace; white-space: pre-wrap; max-width: calc(100vw - 32px); pointer-events: none; }
+  #info { position: fixed; left: 16px; bottom: 14px; margin: 0; font: 13px/1.6 Hahmlet, serif; color: #ddd; text-shadow: 0 0 3px #000; white-space: pre-wrap; max-width: calc(100vw - 32px); pointer-events: none; }
 </style>
 </head>
 <body>
