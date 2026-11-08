@@ -29,7 +29,7 @@ const at = params.get('at');
 const startClock = at ? Date.parse(at + (/[zZ]|[+-]\d\d:?\d\d$/.test(at) ? '' : '+09:00')) : startReal;
 const rate = Number(params.get('rate')) || 1;
 const clock = () => startClock + (Date.now() - startReal) * rate;
-const look = LOOKS[params.get('look')] ?? LOOKS.angbu;
+const look = LOOKS[params.get('look')] ?? LOOKS.non;
 
 const canvas = document.querySelector('canvas');
 const ctx = canvas.getContext('2d');
@@ -52,7 +52,7 @@ loadPan().then((p) => { pan = p; status = ''; }).catch(() => { status = '판을 
 
 const memory = {}; // 그림이 프레임 사이에 기억할 것(잔상, 발자국 등)
 let fontsReady = false;
-Promise.all(['SongMyung', 'GowunBatang', 'Hahmlet', '600 16px Hahmlet', 'Hanja300', 'Hanja500', 'Hanja900']
+Promise.all(['SongMyung', 'GowunBatang', '700 16px GowunBatang', 'Hahmlet', '600 16px Hahmlet', 'Hanja300', 'Hanja500', 'Hanja900']
   .map((n) => document.fonts.load(n.includes(' ') ? n : `16px ${n}`, '절기節')))
   .catch(() => {}).finally(() => { fontsReady = true; });
 
