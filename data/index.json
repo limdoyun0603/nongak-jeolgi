@@ -1,0 +1,7 @@
+{
+  "note": "nongak-formations에서 가져와 고정해 둔 녹화본. 원래 레포가 바뀌어도 이 사이트는 이 파일만 쓴다.",
+  "source": "https://github.com/limdoyun0603/nongak-formations",
+  "copied": [
+    { "file": "ipjanggut.json", "from": "recordings/ipjanggut.json", "commit": "c619a2d", "copied_at": "2026-11-08" }
+  ]
+}

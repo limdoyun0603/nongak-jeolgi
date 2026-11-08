@@ -5,7 +5,7 @@
 ## 무엇을 하는가
 
 - 접속한 시각의 절기를 브라우저가 직접 계산한다.
-- [nongak-formations](https://github.com/limdoyun0603/nongak-formations)의 `recordings/`에 있는 판굿 녹화본을 불러와 끝없이 잇는다. 녹화본이 새로 올라오면 다음 접속부터 판에 들어온다.
+- [nongak-formations](https://github.com/limdoyun0603/nongak-formations)의 판굿 녹화본을 끝없이 잇는다. 지금은 확정된 녹화본(입장굿)을 `data/`에 복사해 고정해 두고 그것만 쓴다. 원래 레포는 계속 바뀌므로, 디자인을 만지는 동안 데이터가 흔들리지 않게 하기 위해서다. `src/pan.js`의 `MODE`를 `'live'`로 바꾸면 원래 레포의 최신 녹화본을 매번 읽는다.
 - 절기에 따라 판의 빠르기와 색이 바뀌고, 고창의 실제 해 높이에 따라 밝기가 바뀐다.
 - 판의 진행은 현재 시각에서 계산한다. 같은 순간에 접속한 사람은 모두 같은 장면을 본다.
 
@@ -40,7 +40,7 @@ src/main.js     확인용 화면 (최종 디자인은 이 파일만 바꾼다)
 
 ## 녹화본 순서
 
-`nongak-formations/recordings/index.json`이 있으면 그 순서를 따른다. 없으면 파일 이름에 `ipjang`, `madang1`, `madang2`, `madang3`이 들어간 순서로 놓는다.
+고정 모드에서는 `data/index.json`에 적힌 순서를 따른다. 실시간 모드에서는 `nongak-formations/recordings/index.json`이 있으면 그 순서를 따른다. 없으면 파일 이름에 `ipjang`, `madang1`, `madang2`, `madang3`이 들어간 순서로 놓는다.
 
 ```json
 ["ipjanggut.json", "madang1.json", "madang2.json", "madang3.json"]

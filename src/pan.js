@@ -4,6 +4,11 @@
 // 'gochang-nongak-record' 형식 파일이다(진형 기록기의 💾 파일로 저장).
 // 레포에 새 녹화본이 올라오면 다음 접속부터 자동으로 판에 들어온다.
 
+// 데이터를 어디서 읽을지.
+//   'snapshot' : 이 레포의 data/ 에 고정해 둔 녹화본만 쓴다(지금). 원래 레포가 바뀌어도 영향 없음.
+//   'live'     : nongak-formations 레포의 최신 녹화본을 매번 읽는다.
+export const MODE = 'snapshot';
+
 export const SOURCE = {
   owner: 'limdoyun0603',
   repo: 'nongak-formations',
@@ -81,12 +86,16 @@ function bridge(from, to) {
 export async function loadPan() {
   // 미리보기용: 녹화본을 페이지 안에 넣어 둔 경우 그것을 쓴다(네트워크 없이).
   const preload = globalThis.PAN_PRELOAD;
-  const files = preload ? Object.keys(preload) : await listRecordings();
+  let files;
+  if (preload) files = Object.keys(preload);
+  else if (MODE === 'snapshot') files = (await getJSON('data/index.json')).copied.map((c) => c.file);
+  else files = await listRecordings();
+  const base = MODE === 'snapshot' ? 'data/' : SOURCE.pages + 'recordings/';
   const segments = [];
   const loaded = [];
   for (const f of files) {
     try {
-      const rec = preload ? preload[f] : await getJSON(SOURCE.pages + 'recordings/' + f);
+      const rec = preload ? preload[f] : await getJSON(base + f);
       if (!validRecord(rec)) continue;
       segments.push(...toSegments(rec, f));
       loaded.push(f);
